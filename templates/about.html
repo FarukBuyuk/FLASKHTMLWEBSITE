@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+    body {
+        margin: 0;
+        padding-top: 20px;
+        text-align: center;
+        background-color: #2C3E50; /* Koyu bir mavi tonu (isteğe bağlı) */
+        background-image: url('{{ url_for("static", filename="pattern.png") }}'); /* Desen resmi yolu */
+        color: white; /* Metin rengini beyaz yap */
+    }
+
+    h3 {
+        margin-bottom: 10px;
+    }
+
+    img {
+        max-width: 50%; /* Resimleri ortala, genişliği %50 yap */
+        height: auto;
+        margin: 10px auto; /* 10px boşluk ile ortala */
+        display: block; /* Dikey hizalama */
+    }
+</style>
+
+<h3>Tanıtım</h3>
+<hr>
+
+<img src="{{ url_for('static', filename='1.png') }}" alt="Resim 1" title="Resim 1">
+<br>
+
+<img src="{{ url_for('static', filename='2.png') }}" alt="Resim 2" title="Resim 2">
+<br>
+
+<img src="{{ url_for('static', filename='3.png') }}" alt="Resim 3" title="Resim 3">
+<br>
+
+<img src="{{ url_for('static', filename='4.png') }}" alt="Resim 4" title="Resim 4">
+<br>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+    body {
+        margin: 0;
+        padding-top: 0px;
+        position: relative;
+    }
+
+    body::before {
+        content: "";
+        background-image: url("/static/anasayfa1.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .navbar {
+        z-index: 2;
+        position: fixed;
+        width: 100%;
+    }
+
+    .gallery-bar {
+        text-align: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        background-color: rgba(255, 255, 255, 0.1); /* Şeffaf beyaz arkaplan */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        max-width: 800px;
+        width: 100%;
+        margin-top: 50px; /* Sayfanın üstünden 50px aşağı kaydırıldı */
+    }
+
+    .gallery-thumbnails {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .thumbnail {
+        max-width: 150px;
+        max-height: 100px;
+        border-radius: 10px;
+        margin: 10px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .thumbnail:hover {
+        transform: scale(1.1);
+    }
+
+    .gallery-video {
+        max-width: 100%;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .jumbotron {
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 20px;
+        border-radius: 20px;
+        margin-top: 50px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .video-container {
+        display: none; /* Video başlangıçta gizlenir */
+    }
+</style>
+
+<div class="gallery-bar">
+    <div class="gallery-thumbnails">
+        {% for image in ["maxresdefault.jpg", "2.jpg", "5.jpg", "girisyap.png"] %}
+            <img class="thumbnail" src="{{ url_for('static', filename=image) }}" alt="Image" onclick="showVideo('/static/anasayfavideo.mp4')">
+        {% endfor %}
+    </div>
+    
+    <div class="video-container" id="videoContainer">
+        <video class="gallery-video" id="galleryVideo" controls loop muted>
+            <source src="/static/anasayfavideo.mp4" type="video/mp4">
+            Tarayıcınız video etiketini desteklememektedir.
+        </video>
+    </div>
+</div>
+
+<script>
+    function showVideo(videoSource) {
+        document.getElementById('videoContainer').style.display = 'block';
+        document.getElementById('galleryVideo').src = videoSource;
+    }
+</script>
+
+{% endblock %}

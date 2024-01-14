@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .dashboard-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        position: relative;
+        color: #ffffff;
+    }
+
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 2;
+    }
+
+    .btn-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        margin-right: -500px;
+    }
+
+    .btn {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-decoration: none;
+        color: #ffffff;
+        display: block;
+        width: 200px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 2px solid #ffffff;
+    }
+
+    /* Kahverengi renkli buton (username) */
+    .username-btn {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-decoration: none;
+        color: #ffffff;
+        display: block;
+        width: 200px;
+        text-align: center;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: #8B4513; /* Kahverengi renkli buton */
+        margin-right: -500px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 2px solid #ffffff;
+    }
+
+    .username-btn:hover {
+        background-color: #A0522D; /* Kahverengi renkli butonun üzerine gelindiğinde rengi değiştir */
+    }
+
+    /* Kapalı yeşil renkli butonlar (E-posta değiştir, Parola değiştir) */
+    .btn-primary {
+        background-color: #006400; /* Kapalı yeşil renkli buton */
+    }
+
+    .btn-primary:hover {
+        background-color: #008000; /* Kapalı yeşil renkli butonun üzerine gelindiğinde rengi değiştir */
+    }
+
+    /* Kırmızı renkli buton (Çıkış Yap) */
+    .btn-danger {
+        background-color: #FF0000; /* Kırmızı renkli buton */
+    }
+
+    .btn-danger:hover {
+        background-color: #DC143C; /* Kırmızı renkli butonun üzerine gelindiğinde rengi değiştir */
+    }
+</style>
+
+<div class="dashboard-container">
+    <img src="{{ url_for('static', filename='2.jpg') }}" alt="background" class="background-image">
+
+    <!-- Username gösterme butonu -->
+    <button class="btn username-btn" disabled>{{ session["username"] }}</button>
+
+    <div class="btn-container">
+        <!-- E-posta değiştirme butonu -->
+        <a href="{{ url_for('change_email') }}" class="btn btn-primary">E-posta Değiştir</a>
+
+        <!-- Parola değiştirme butonu -->
+        <a href="{{ url_for('change_password') }}" class="btn btn-primary">Parola Değiştir</a>
+
+        <!-- Çıkış butonu -->
+        <a href="{{ url_for('logout') }}" class="btn btn-danger">Çıkış Yap</a>
+    </div>
+</div>
+{% endblock body %}

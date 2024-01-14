@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <style>
+        /* Stil tanımları */
+        body {
+            background-image: url("/static/5.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white; /* Sayfadaki genel metin rengini beyaz yap */
+        }
+
+        .small-input {
+            font-size: 12px;
+            max-width: 200px;
+            width: 100%;
+        }
+
+        .small-button {
+            font-size: 14px;
+            max-width: 200px;
+            width: 100%;
+        }
+
+        table {
+            color: white; /* Tablo içindeki metin rengini beyaz yap */
+        }
+
+        th, td {
+            text-align: center; /* Hücre içeriğini ortala */
+            padding: 8px; /* Hücre içeriğine boşluk ekle */
+        }
+
+        th.SIRALAMA, td.SIRALAMA {
+            color: white; /* SIRALAMA metin rengini beyaz yap */
+        }
+
+        th.KARAKTER, td.KARAKTER {
+            color: white; /* KARAKTER metin rengini beyaz yap */
+        }
+
+        th.LVL, td.LVL {
+            color: white; /* LVL metin rengini beyazyap */
+        }
+
+        /* İhtiyacınıza göre başka stil tanımları ekleyebilirsiniz */
+    </style>
+
+    <h3> Karakter Sıralaması </h3>
+    <hr>
+
+    <!-- Form alanları -->
+    <form method="post">
+        <div class="form-group">
+            {{ form.KARAKTER.label }}
+            {{ form.KARAKTER(class="form-control small-input", placeholder="Savaşcı-Sura-Şaman-Ninja") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.LVL.label }}
+            {{ form.LVL(class="form-control small-input", placeholder="1-100") }}
+        </div>
+
+        <button type="submit" class="btn btn-dark btn-block small-button">Karakter Ekle</button>
+    </form>
+
+    <!-- Karakter Listesi -->
+    <h3> Güncel Karakter Listesi </h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="SIRALAMA">SIRALAMA</th>
+                <th class="KARAKTER">KARAKTER</th>
+                <th class="LVL">LVL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td class="SIRALAMA">{{ article.SIRALAMA }}</td>
+                    <td class="KARAKTER">{{ article.KARAKTER }}</td>
+                    <td class="LVL">{{ article.LVL }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock body %}
